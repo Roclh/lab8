@@ -258,7 +258,7 @@ public class MainController {
 
 
             } catch (IOException e) {
-                Main.setError(Main.resourceBundle.getString("addnewpersonerror"), "Попробуйте снова. \n\n" + Arrays.toString(e.getStackTrace()));
+                Main.setError(Main.resourceBundle.getString("addnewpersonerror"), Main.resourceBundle.getString("tryagain")+"\n\n" + Arrays.toString(e.getStackTrace()));
                 FXMLLoader fxmlLoaderer = new FXMLLoader(getClass().getResource("Error.fxml"),Main.resourceBundle);
                 try {
                     Parent root = fxmlLoaderer.load();
@@ -295,7 +295,7 @@ public class MainController {
 
 
             } catch (IOException e) {
-                Main.setError(Main.resourceBundle.getString("addnewpersonerror"), "Попробуйте снова. \n\n" + Arrays.toString(e.getStackTrace()));
+                Main.setError(Main.resourceBundle.getString("addnewpersonerror"), Main.resourceBundle.getString("tryagain")+"\n\n" + Arrays.toString(e.getStackTrace()));
                 FXMLLoader fxmlLoaderer = new FXMLLoader(getClass().getResource("Error.fxml"),Main.resourceBundle);
                 try {
                     Parent root = fxmlLoaderer.load();
@@ -492,7 +492,7 @@ public class MainController {
 
 
                 } catch (IOException e) {
-                    Main.setError(Main.resourceBundle.getString("addnewpersonerror"), "Попробуйте снова. \n\n" + e.getMessage());
+                    Main.setError(Main.resourceBundle.getString("addnewpersonerror"), Main.resourceBundle.getString("tryagain") +"\n\n" + e.getMessage());
                     FXMLLoader fxmlLoaderer = new FXMLLoader(getClass().getResource("Error.fxml"),Main.resourceBundle);
                     try {
                         Parent root = fxmlLoaderer.load();
@@ -1070,7 +1070,7 @@ public class MainController {
                         stage.showAndWait();
                         break;
                     } catch (IOException e) {
-                        Main.setError(Main.resourceBundle.getString("addnewpersonerror"), "Попробуйте снова. \n\n" + e.getMessage());
+                        Main.setError(Main.resourceBundle.getString("addnewpersonerror"), Main.resourceBundle.getString("tryagain")+"\n\n" + e.getMessage());
                         FXMLLoader fxmlLoaderer = new FXMLLoader(getClass().getResource("Error.fxml"),Main.resourceBundle);
                         try {
                             Parent root = fxmlLoaderer.load();
@@ -1106,7 +1106,7 @@ public class MainController {
                         stage.showAndWait();
                         break;
                     } catch (IOException e) {
-                        Main.setError(Main.resourceBundle.getString("addnewpersonerror"), "Попробуйте снова. \n\n" + e.getMessage());
+                        Main.setError(Main.resourceBundle.getString("addnewpersonerror"),  Main.resourceBundle.getString("tryagain")+"\n\n" + e.getMessage());
                         FXMLLoader fxmlLoaderer = new FXMLLoader(getClass().getResource("Error.fxml"),Main.resourceBundle);
                         try {
                             Parent root = fxmlLoaderer.load();
