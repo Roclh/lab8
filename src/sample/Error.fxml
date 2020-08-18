@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ErrorController">
+   <children>
+      <Pane layoutX="9.0" layoutY="7.0" prefHeight="287.0" prefWidth="382.0" style="-fx-background-color: #dbe9fc;">
+         <children>
+            <Pane layoutX="14.0" layoutY="66.0" prefHeight="138.0" prefWidth="131.0" style="-fx-background-color: #0e0e0e;">
+               <children>
+                  <ImageView fitHeight="103.0" fitWidth="131.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../com/gui/assets/policeCat.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button fx:id="okButton" layoutX="237.0" layoutY="228.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Ok" />
+            <TextArea fx:id="errorPane" layoutX="157.0" layoutY="56.0" prefHeight="164.0" prefWidth="210.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
