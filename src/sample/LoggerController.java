@@ -206,7 +206,6 @@ public class LoggerController {
             while (true) {
                 System.out.print("");
                 if (status.equals("AllFine")) {
-                    sender.send(new Request(login_auth.getText().trim(), "show", login_auth.getText().trim(), login_pass.getText().trim()));
                     Main.Username = request.getUserName();
                     login_auth.getScene().getWindow().hide();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"), ResourceBundle.getBundle("Locale_ru", Locale.forLanguageTag("ru")));
@@ -318,7 +317,6 @@ public class LoggerController {
                 while (true) {
                     System.out.print("");
                     if (status.equals("AllFine")) {
-                        sender.send(new Request(login_auth.getText().trim(), "show", login_auth.getText().trim(), login_pass.getText().trim()));
                         Main.Username = request.getUserName();
                         login_auth.getScene().getWindow().hide();
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"), ResourceBundle.getBundle("Locale_ru", Locale.forLanguageTag("ru")));
@@ -334,6 +332,8 @@ public class LoggerController {
                                 System.exit(0);
                             });
                             stage.setScene(new Scene(root));
+                            MainController.sender =sender;
+
                             stage.showAndWait();
 
                         }catch (IOException e) {

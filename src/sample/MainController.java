@@ -8,9 +8,7 @@ import com.classes.serverSide.answers.Request;
 import com.enums.Country;
 import com.enums.EyeColor;
 import com.enums.HairColor;
-import com.wrappers.Coordinates;
-import com.wrappers.Location;
-import com.wrappers.Person;
+import com.wrappers.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -41,12 +39,12 @@ import javafx.scene.input.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -180,6 +178,9 @@ public class MainController {
     private MenuItem help;
 
     @FXML
+    private MenuItem execute_script;
+
+    @FXML
     private CheckBox print_unique_height;
 
     @FXML
@@ -255,6 +256,8 @@ public class MainController {
                     buildData();
                 });
                 stage.showAndWait();
+                Terminal.sleep(300);
+                buildData();
 
 
             } catch (IOException e) {
@@ -292,6 +295,8 @@ public class MainController {
                     buildData();
                 });
                 stage.showAndWait();
+                Terminal.sleep(300);
+                buildData();
 
 
             } catch (IOException e) {
@@ -992,6 +997,7 @@ public class MainController {
 
     private void initiateSettings() {
 
+
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -1036,6 +1042,27 @@ public class MainController {
                 }
             }
         });
+
+        execute_script.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser chooser = new FileChooser();
+                chooser.setTitle(Main.resourceBundle.getString("choosescript"));
+                File script = chooser.showOpenDialog(Add.getScene().getWindow());
+                if(script != null){
+                    try {
+                        execute_script(script, sender);
+                        summonAlert(Main.resourceBundle.getString("scriptexecuted"), Alert.AlertType.INFORMATION);
+                        buildData();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    summonAlert(Main.resourceBundle.getString("nosuchscript"), Alert.AlertType.INFORMATION);
+                }
+            }
+        });
+
     }
 
     public void showPerson(MouseEvent mouseEvent) {
@@ -1173,6 +1200,23 @@ public class MainController {
             scene.setRoot(FXMLLoader.load(getClass().getResource("main.fxml"), Main.resourceBundle));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void execute_script(File file, Sender sender) throws FileNotFoundException {
+        if (file.exists() && file.canRead()) {
+            if (HistoryWrapper.addScriptPath(file.getPath())) {
+                Scanner fileReader = new Scanner(file);
+                while (fileReader.hasNextLine()) {
+                    UserCommand userCommand1 = CommandTranslator.translateCommand(fileReader.nextLine());
+                    if(userCommand1.getCommand().equals("execute_script")){
+                        execute_script(new File(userCommand1.getArg1()), sender);
+                    }
+                    Request request = new Request(Main.Username,userCommand1.getCommand(), userCommand1.getArg1(), userCommand1.getArg2());
+                    sender.send(request);
+                }
+                HistoryWrapper.popScriptPath(file.getPath());
+            } else System.out.println("Эта команда вызовет рекурсию, по этому она будет игнорирована");
         }
     }
 }

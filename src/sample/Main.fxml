@@ -95,6 +95,7 @@
                      </content>
                   </CustomMenuItem>
                 <MenuItem fx:id="exit" mnemonicParsing="false" text="%exit" />
+                  <MenuItem fx:id="execute_script" mnemonicParsing="false" text="%executescript" />
               </items>
             </SplitMenuButton>
          </children>

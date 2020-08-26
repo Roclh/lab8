@@ -224,7 +224,7 @@ public class CommandTranslator {
                     person.getLocation().setY(rs.getFloat("locationy"));
                     person.getLocation().setZ(rs.getFloat("locationz"));
                     if (allPerson.offer(person)) {
-                        System.out.println("Человек с id " + person.getId() + " был добавлен в коллекцию.");
+                        System.out.print(" ");
                     } else System.out.println("Произошла ошибка");
                 }
                 rs.close();

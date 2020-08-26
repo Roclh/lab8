@@ -88,25 +88,33 @@ public class AddMenuController {
     }
 
     private void initiateChoiceBoxes(){
-        ObservableList<String> hairColors = FXCollections.observableArrayList("GREEN", "BLACK", "PINK", "YELLOW", "ORANGE", "WHITE");
-        ChoiceHairColor.setItems(hairColors);
+        ObservableList<String> hairColors;
+        if(editable) {
+            hairColors = FXCollections.observableArrayList("GREEN", "BLACK", "PINK", "YELLOW", "ORANGE", "WHITE");
+            ChoiceHairColor.setItems(hairColors);
+        }
+
         if(ChoiceHairColorText.isEmpty()){
-            ChoiceHairColor.setValue("Цвет волос");
+            ChoiceHairColor.setValue(Main.resourceBundle.getString("haircolor"));
         }else{
             ChoiceHairColor.setValue(ChoiceHairColorText);
         }
-        ObservableList<String> eyeColors = FXCollections.observableArrayList("RED", "BLUE", "YELLOW");
-        ChoiceEyeColor.setItems(eyeColors);
+        if(editable) {
+            ObservableList<String> eyeColors = FXCollections.observableArrayList("RED", "BLUE", "YELLOW");
+            ChoiceEyeColor.setItems(eyeColors);
+        }
         if(ChoiceEyeColorText.isEmpty()){
-            ChoiceEyeColor.setValue("Цвет глаз");
+            ChoiceEyeColor.setValue(Main.resourceBundle.getString("eyecolor"));
         }else{
             ChoiceEyeColor.setValue(ChoiceEyeColorText);
         }
 
-        ObservableList<String> nationality = FXCollections.observableArrayList("INDIA", "VATICAN", "NORTH_AMERICA", "JAPAN");
-        ChoiceNationality.setItems(nationality);
+        if(editable){
+            ObservableList<String> nationality = FXCollections.observableArrayList("INDIA", "VATICAN", "NORTH_AMERICA", "JAPAN");
+            ChoiceNationality.setItems(nationality);
+        }
         if(ChoiceNationalityText.isEmpty()){
-            ChoiceNationality.setValue("Национальность");
+            ChoiceNationality.setValue(Main.resourceBundle.getString("country"));
         }else{
             ChoiceNationality.setValue(ChoiceNationalityText);
         }
@@ -119,11 +127,6 @@ public class AddMenuController {
         LocationY.setText(ChoiceLocationText.getY().toString());
         LocationZ.setText(ChoiceLocationText.getZ().toString());
 
-
-
-        ChoiceEyeColor.setEditable(editable);
-        ChoiceHairColor.setEditable(editable);
-        ChoiceNationality.setEditable(editable);
         NameField.setEditable(editable);
         HeightField.setEditable(editable);
         CoordinateX.setEditable(editable);
@@ -137,7 +140,7 @@ public class AddMenuController {
     private void initiateButton() {
         if (command.equals("add")) {
             AddButton.setOnAction(event -> {
-                if (ChoiceHairColor.getValue().equals("Цвет волос") || ChoiceEyeColor.getValue().equals("Цвет глаз") || ChoiceNationality.getValue().equals("Национальность") ||
+                if (ChoiceHairColor.getValue().equals(Main.resourceBundle.getString("haircolor")) || ChoiceEyeColor.getValue().equals(Main.resourceBundle.getString("eyecolor")) || ChoiceNationality.getValue().equals(Main.resourceBundle.getString("country")) ||
                         NameField.getText().isEmpty() || HeightField.getText().isEmpty() || CoordinateX.getText().isEmpty() || CoordinateY.getText().isEmpty() ||
                         LocationX.getText().isEmpty() || LocationY.getText().isEmpty() || LocationZ.getText().isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -176,7 +179,7 @@ public class AddMenuController {
 
         }else if(command.equals("min")){
             AddButton.setOnAction(event -> {
-                if (ChoiceHairColor.getValue().equals("Цвет волос") || ChoiceEyeColor.getValue().equals("Цвет глаз") || ChoiceNationality.getValue().equals("Национальность") ||
+                if (ChoiceHairColor.getValue().equals(Main.resourceBundle.getString("haircolor")) || ChoiceEyeColor.getValue().equals(Main.resourceBundle.getString("eyecolor")) || ChoiceNationality.getValue().equals(Main.resourceBundle.getString("country")) ||
                         NameField.getText().isEmpty() || HeightField.getText().isEmpty() || CoordinateX.getText().isEmpty() || CoordinateY.getText().isEmpty() ||
                         LocationX.getText().isEmpty() || LocationY.getText().isEmpty() || LocationZ.getText().isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -215,7 +218,7 @@ public class AddMenuController {
         }
         else{
             AddButton.setOnAction(event -> {
-                if (ChoiceHairColor.getValue().equals("Цвет волос") || ChoiceEyeColor.getValue().equals("Цвет глаз") || ChoiceNationality.getValue().equals("Национальность") ||
+                if (ChoiceHairColor.getValue().equals(Main.resourceBundle.getString("haircolor")) || ChoiceEyeColor.getValue().equals(Main.resourceBundle.getString("eyecolor")) || ChoiceNationality.getValue().equals(Main.resourceBundle.getString("country")) ||
                         NameField.getText().isEmpty() || HeightField.getText().isEmpty() || CoordinateX.getText().isEmpty() || CoordinateY.getText().isEmpty() ||
                         LocationX.getText().isEmpty() || LocationY.getText().isEmpty() || LocationZ.getText().isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
